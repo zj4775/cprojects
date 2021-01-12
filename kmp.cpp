@@ -3,86 +3,86 @@
 
 typedef struct
 {
-	int num;
-	char s[100];
+    int num;
+    char s[100];
 }string;
-void getnext(string s,int next[])//¾Í¿¼Õâ¸ö¶«Î÷
+void getnext(string s,int next[])//å°±è€ƒè¿™ä¸ªä¸œè¥¿
 {
-	int i,j;
-	
-	i=1;
-	j=0;
-	next[1]=0;
-	
-	while(i<s.num)
-	{
-		if(j==0||s.s[i]==s.s[j])
-		{
-			i++;
-			j++;
-			next[i]=j;
-		}
-		else
-		{
-			j=next[j];
-		}
-	}
+    int i,j;
+
+    i=1;
+    j=0;
+    next[1]=0;
+
+    while(i<s.num)
+    {
+        if(j==0||s.s[i]==s.s[j])
+        {
+            i++;
+            j++;
+            next[i]=j;
+        }
+        else
+        {
+            j=next[j];
+        }
+    }
 }
 void pp(string s,string sub,int next[])
 {
-	int i,j;
-	i=j=1;
-	while(i<=s.num&&j<=sub.num)
-	{
-		if(s.s[i]==sub.s[j]||j==0){i++;j++;}
-		else{j=next[j];}
-	}
-	if(j>sub.num){printf("Æ¥Åä³É¹¦²¢ÇÒÔÚÄ¸´®µÄµÚ%d¸öÎ»ÖÃ",i-sub.num);}
-	else{printf("Æ¥Åä²»³É¹¦");}
-	
-	
+    int i,j;
+    i=j=1;
+    while(i<=s.num&&j<=sub.num)
+    {
+        if(s.s[i]==sub.s[j]||j==0){i++;j++;}
+        else{j=next[j];}
+    }
+    if(j>sub.num){printf("åŒ¹é…æˆåŠŸå¹¶ä¸”åœ¨æ¯ä¸²çš„ç¬¬%dä¸ªä½ç½®",i-sub.num);}
+    else{printf("åŒ¹é…ä¸æˆåŠŸ");}
+
+
 }
 
 
 
 int main()
 {
-	int i;
-	string mu,zi;
-	int m,n,next[20];
-	printf("ÇëÊäÈëÄ¸´®¸öÊı");
-	scanf("%d",&m);
-	mu.num=m;
-	printf("ÇëÊäÈëÄ¸´®");
-	getchar();
-	for(i=1;i<=m;i++)
-	{
-		scanf("%c",&mu.s[i]);
-	}
+    int i;
+    string mu,zi;
+    int m,n,next[20];
+    printf("è¯·è¾“å…¥æ¯ä¸²ä¸ªæ•°");
+    scanf("%d",&m);
+    mu.num=m;
+    printf("è¯·è¾“å…¥æ¯ä¸²");
+    getchar();
+    for(i=1;i<=m;i++)
+    {
+        scanf("%c",&mu.s[i]);
+    }
 
 
-	
-	getchar();
 
-	printf("ÇëÊäÈë×Ó´®¸öÊı");
-	scanf("%d",&n);
-	zi.num=n;
-	
+    getchar();
 
-	printf("ÇëÊäÈë×Ó´®");
-	getchar();
+    printf("è¯·è¾“å…¥å­ä¸²ä¸ªæ•°");
+    scanf("%d",&n);
+    zi.num=n;
+
+
+    printf("è¯·è¾“å…¥å­ä¸²");
+    getchar();
     for(i=1;i<=n;i++)
-	{
-		scanf("%c",&zi.s[i]);
-	}
-	
+    {
+        scanf("%c",&zi.s[i]);
+    }
 
-	getnext(zi,next);
 
-	
-	pp(mu,zi,next);
+    getnext(zi,next);
+
+
+    pp(mu,zi,next);
     return 0;
 
-	
-	
+
+
 }
