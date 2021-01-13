@@ -1,4 +1,8 @@
 #include<stdio.h>
+#include <cstdlib>
+#include "sys/malloc.h"
+#include "iostream"
+using namespace std;
 
 
 void reverse(char* _array,int low,int high){
@@ -30,6 +34,17 @@ void print(char* _array,int length){
 	printf("\n");
 }
 
+void reverse_zj(char * array,int s,int e){
+    int mid=(s+e)/2;
+    for (int i = 0; i <=mid ; ++i) {
+        int start=s;
+        int end=e-i;
+        int tmp=array[end];
+        array[end]=array[start];
+        array[start]=tmp;
+    }
+}
+
 
 int main(){
 
@@ -41,10 +56,22 @@ int main(){
 	reverse(_array,10,14);
 	print(_array,15);*/
 
-	char _array[15]={'a','b','c','d','e','0','1','2','3','4','5','6','7','8','9'};
+	/*char _array[15]={'a','b','c','d','e','0','1','2','3','4','5','6','7','8','9'};
 	print(_array,15);
 	reverse2(_array,15,10);
-	print(_array,15);
+	print(_array,15);*/
+    char* array=(char*)malloc(100);
+	char* array1=(char*)malloc(100);
+    char* array2=(char*)malloc(100);
+	cout<<"ÇëÊäÈë×Ö·û´®1\n";
+	gets(array1);
+    cout<<"ÇëÊäÈë×Ö·û´®2\n";
+    gets(array2);
+    array=strcat(array1,array2);
+    cout<<"Æ´½Ó×Ö·û´®:"<<array;
+    reverse_zj(array,0,strlen(array));
+    cout<<"×ª»»ºó×Ö·û´®:"<<array;
+
 	return 0;
 
 
