@@ -36,10 +36,13 @@ void print(char* _array,int length){
 
 void reverse_zj(char * array,int s,int e){
     int mid=(s+e)/2;
-    for (int i = 0; i <=mid ; ++i) {
-        int start=s;
-        int end=e-i;
-        int tmp=array[end];
+    if ((s+e)%2==0&&s==0){
+        mid=mid-1;
+    }
+    for (int i = s; i <=mid ; ++i) {
+        int start=i;
+        int end=e-(i-s);
+        char tmp=array[end];
         array[end]=array[start];
         array[start]=tmp;
     }
@@ -68,10 +71,12 @@ int main(){
     cout<<"ÇëÊäÈë×Ö·û´®2\n";
     gets(array2);
     array=strcat(array1,array2);
-    cout<<"Æ´½Ó×Ö·û´®:"<<array;
-    reverse_zj(array,0,strlen(array));
-    cout<<"×ª»»ºó×Ö·û´®:"<<array;
-
+    cout<<"Æ´½Ó×Ö·û´®:"<<array<<endl;
+    reverse_zj(array,0,strlen(array)-1);
+    cout<<"×ª»»ºó×Ö·û´®:"<<array<<endl;
+    reverse_zj(array,0,strlen(array2)-1);
+    reverse_zj(array,strlen(array2),strlen(array)-1);
+    cout<<"×îÖÕ×ª»»ºó×Ö·û´®:"<<array<<endl;
 	return 0;
 
 
