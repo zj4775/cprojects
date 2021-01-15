@@ -62,6 +62,36 @@ void quick_sort(int * array,int s,int e){
     }
 }
 
+int quick_sort_k(int * array,int s,int e,int k){
+    //cout<<"获取第几大的数字"<<endl;
+    int value=array[s];
+    int i=s;
+    int j=e;
+    while (i<j){
+        while (i<j&&array[j]>value){
+            j--;
+        }
+        if (i<j){
+            array[i]=array[j];
+            i++;
+        }
+        while (i<j&&array[i]<value){
+            i++;
+        }
+        if (i<j){
+            array[j]=array[i];
+            j--;
+        }
+    }
+    if (i==k){
+        return value;
+    }else if (i>k){
+        return quick_sort_k(array,s,i-1,k);
+    }else{
+        return quick_sort_k(array,i+1,e,k);
+    }
+}
+
 void select_sort(int * array,int s,int e){
     cout<<"选择排序"<<endl;
     int min=0;
@@ -83,7 +113,33 @@ void select_sort(int * array,int s,int e){
 
 void bubble_sort(int * array,int s,int e){
     cout<<"冒泡排序"<<endl;
+    for (int i = e; i >s ; --i) {
+        for (int j = s; j <i -1; ++j) {//这里的j不用取到最后一个，而是最后第二个
+            if (array[j]>array[j+1]){
+                convert(array,j,j+1);
+            }
+        }
+    }
+}
 
+void bi_bubble_sort(int * array,int s,int e){
+    cout<<"双向冒泡排序"<<endl;
+    int start=s;
+    int end=e;
+    while (start<end){
+        for (int i = start; i < end-1; ++i) {
+            if (array[i]>array[i+1]){
+                convert(array,i,i+1);
+            }
+        }
+        end--;
+        for (int j = end-1; j >start ; --j) {
+            if (array[j]<array[j-1]){
+                convert(array,j-1,j);
+            }
+        }
+        start++;
+    }
 }
 
 
@@ -91,9 +147,12 @@ void bubble_sort(int * array,int s,int e){
 int main(){
     int orgin[100]={3,6,9,1,2,7,5,0,8,4};
     int* array=orgin;
+    int k=3;
     print_array(array,10);
     //quick_sort(array,0,9);
-    select_sort(array,0,10);
+    cout<<"第"<<k<<"大的数字是:"<<quick_sort_k(array,0,9,k-1);
+    //select_sort(array,0,10);
+    //bi_bubble_sort(array,0,10);
     print_array(array,10);
     return 0;
 }
