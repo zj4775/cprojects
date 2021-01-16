@@ -6,6 +6,7 @@
 #include "string"
 #include "stdlib.h"
 #include "set"
+#include "math.h"
 
 #define MAX 1e10
 #define MIN -1e10
@@ -68,14 +69,14 @@ int quick_sort_k(int * array,int s,int e,int k){
     int i=s;
     int j=e;
     while (i<j){
-        while (i<j&&array[j]>value){
+        while (i<j&&array[j]<value){
             j--;
         }
         if (i<j){
             array[i]=array[j];
             i++;
         }
-        while (i<j&&array[i]<value){
+        while (i<j&&array[i]>value){
             i++;
         }
         if (i<j){
@@ -83,12 +84,13 @@ int quick_sort_k(int * array,int s,int e,int k){
             j--;
         }
     }
-    if (i==k){
+    array[i]=value;
+    if ((i-s)==k){
         return value;
-    }else if (i>k){
+    }else if ((i-s)>k){
         return quick_sort_k(array,s,i-1,k);
     }else{
-        return quick_sort_k(array,i+1,e,k);
+        return quick_sort_k(array,i+1,e,k-(i-s+1));//这里需要去掉i本身自己的位置
     }
 }
 
@@ -142,18 +144,164 @@ void bi_bubble_sort(int * array,int s,int e){
     }
 }
 
+void insert_sort(int * array,int s,int e){
+    cout<<"插入排序"<<endl;
+    int j=0;
+    int value=0;
+    for (int i = s+1; i <e ; ++i) {
+        value=array[i];
+        for (j = i-1; j >=s ; --j) {
+            if (array[j]>value){
+                array[j+1]=array[j];
+            }else{
+                break;
+            }
+        }
+        array[j+1]=value;
+    }
+}
+
+void shell_sort(int * array,int s,int e){
+    cout<<"希尔排序"<<endl;
+    int d=(s+e)/2;
+    int j=0;
+    int value=0;
+    while (d >=1){
+        for (int i = d+s; i <e ; ++i) {
+            value=array[i];
+            for (j = i-d; j >=s ; j-=d) {
+                if (array[j]>value){
+                    array[j+d]=array[j];
+                }else{
+                    break;
+                }
+            }
+            array[j+d]=value;
+        }
+        d/=2;
+    }
+}
+
+void merge(int * array,int s,int m,int e){//感觉有时结尾还是用等号好算一点
+    int* newarray=(int*)malloc(sizeof(int)*(e-s+1));
+    int i=s;
+    int j=m+1;
+    int k=0;
+    while (i<=m&&j<=e){
+        if (array[i]>array[j]){
+            newarray[k++]=array[j++];
+        }else{
+            newarray[k++]=array[i++];
+        }
+    }
+    while (i<=m){
+        newarray[k++]=array[i++];
+    }
+    while (j<=e){
+        newarray[k++]=array[j++];
+    }
+    k=0;
+    while (s<=e){
+        array[s++]=newarray[k++];
+    }
+}
+
+void merge_sort(int * array,int s,int e){
+    if (s<e){
+        int m=(s+e)/2;
+        merge_sort(array,s,m);
+        merge_sort(array,m+1,e);
+        merge(array,s,m,e);
+    }
+}
+
+int get_num_len(int n){
+    int count=0;
+    while (n!=0){
+        count++;
+        n/=10;
+    }
+    return count;
+}
+
+int get_num_by_pos(int n,int pos){
+    int len=get_num_len(n);
+    if (len<pos){
+        return 0;
+    }
+    return (int)(n/pow(10,pos-1))%10;
+}
+
+void radix_sort(int * array,int s,int e){
+    cout<<"基数排序"<<endl;
+    int tmp[10][30];
+    int count[10]={0};
+    int maxlen=0;
+    int c=0;
+    for (int i = s; i <e ; ++i) {
+        int l=get_num_len(array[i]);
+        if (l>maxlen){
+            maxlen=l;
+        }
+    }
+    for (int k = 1; k <=maxlen ; ++k) {
+        memset(count,0,10*sizeof(int));
+        for (int i = s; i <e ; ++i) {
+            int t=get_num_by_pos(array[i],k);
+            tmp[t][count[t]]=array[i];
+            count[t]++;
+        }
+        c=0;
+        for (int i = 0; i <10 ; ++i) {
+            for (int j = 0; j < count[i]; ++j) {
+                array[c++]=tmp[i][j];
+            }
+        }
+    }
+}
+
+
+void adjust_heap(int * array,int s,int e){
+    int i=s;
+    int j=2*i;
+    while (j<=e){
+
+    }
+}
+
+
+void heap_sort(int * array,int s,int e){
+    int m=(s+e)/2;
+    for (int i = m; i >=1 ; --i) {
+        adjust_heap(array,s,i,e);
+    }
+    for (int j = e; j >=0 ; --j) {
+        convert(array,0,array[j]);
+        adjust_heap(array,s,j);
+    }
+
+}
+
 
 
 int main(){
     int orgin[100]={3,6,9,1,2,7,5,0,8,4};
     int* array=orgin;
-    int k=3;
+    int k=7;
     print_array(array,10);
     //quick_sort(array,0,9);
-    cout<<"第"<<k<<"大的数字是:"<<quick_sort_k(array,0,9,k-1);
+    //cout<<"第"<<k<<"大的数字是:"<<quick_sort_k(array,0,9,k-1);
     //select_sort(array,0,10);
     //bi_bubble_sort(array,0,10);
-    print_array(array,10);
+    //insert_sort(array,0,10);
+    //shell_sort(array,0,10);
+    //merge_sort(array,0,9);
+    //print_array(array,10);
+    /*int array2[100]={34,64,9,95,123,27,7297,5,82,433};
+    radix_sort(array2,0,10);
+    print_array(array2,10);*/
+
+
     return 0;
 }
 
