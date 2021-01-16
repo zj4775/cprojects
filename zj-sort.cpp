@@ -262,21 +262,33 @@ void radix_sort(int * array,int s,int e){
 
 
 void adjust_heap(int * array,int s,int e){
+    int tmp=array[s];
     int i=s;
-    int j=2*i;
-    while (j<=e){
-
+    int j=2*i+1;
+    while (j<e){
+        if (j<e-1&&array[j+1]>array[j]){
+            j++;
+        }
+        if (tmp<array[j]){//直接是跟最后一个最大元素交换即可，中间的不用管
+            array[i]=array[j];
+            i=j;
+            j=2*j+1;
+        }else{
+            break;
+        }
     }
+    array[i]=tmp;
 }
 
 
 void heap_sort(int * array,int s,int e){
-    int m=(s+e)/2;
-    for (int i = m; i >=1 ; --i) {
-        adjust_heap(array,s,i,e);
+    cout<<"堆排序"<<endl;
+    int m=(s+e)/2-1;
+    for (int i = m; i >=0 ; --i) {
+        adjust_heap(array,i,e);
     }
-    for (int j = e; j >=0 ; --j) {
-        convert(array,0,array[j]);
+    for (int j = e-1; j >0 ; --j) {
+        convert(array,0,j);
         adjust_heap(array,s,j);
     }
 
@@ -296,7 +308,8 @@ int main(){
     //insert_sort(array,0,10);
     //shell_sort(array,0,10);
     //merge_sort(array,0,9);
-    //print_array(array,10);
+    heap_sort(array,0,10);
+    print_array(array,10);
     /*int array2[100]={34,64,9,95,123,27,7297,5,82,433};
     radix_sort(array2,0,10);
     print_array(array2,10);*/

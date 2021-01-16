@@ -1,14 +1,26 @@
 #include<stdio.h>
-#include <sys/malloc.h>
 #include <stdlib.h>
+#include "math.h"
+#include "iostream"
+#include "iomanip"
+using namespace std;
 
+typedef struct ;
+
+void xiebian(){
+    int a;
+    int b;
+    double c;
+    cout.setf(ios::fixed);
+    cout<<setprecision(3);
+    while (cin>>a>>b){
+        c=sqrt(pow(a,2)+pow(b,2));
+        cout<<c<<endl;
+    }
+}
 
 
 int main(){
-    printf("ok"
-           "");
+
     return 0;
-
-
-
 }
