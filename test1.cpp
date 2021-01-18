@@ -6,7 +6,7 @@ typedef struct student{
     char  name[20];
     int math;
     //按math从大到小排序
-    inline bool operator > (const student &x)  {
+    inline bool operator < (const student &x)  {
         return math>x.math ;
     }
 };
