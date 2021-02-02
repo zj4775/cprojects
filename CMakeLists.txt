@@ -10,6 +10,7 @@ add_executable(acm2 acm_因子.cpp)
 add_executable(acm3 acm_位置数字.cpp)
 
 add_executable(acm5 acm_拼接最大数.cpp)
+add_executable(acm6 acm_红烧肉.cpp)
 add_executable(test1 test1.cpp)
 add_executable(zj-kmp zj-kmp.cpp)
 add_executable(sort sort.cpp)
