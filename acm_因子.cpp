@@ -38,6 +38,8 @@ int zhongxue(int n){
 }
 
 
+
+
 int main(){
 
     int q;
