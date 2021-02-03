@@ -8,7 +8,7 @@ add_executable(kmp kmp.cpp)
 add_executable(acm1 acm_比赛积分.cpp)
 add_executable(acm2 acm_因子.cpp)
 add_executable(acm3 acm_位置数字.cpp)
-
+add_executable(acm4 acm_n次方.cpp)
 add_executable(acm5 acm_拼接最大数.cpp)
 add_executable(acm6 acm_红烧肉.cpp)
 add_executable(acm7 acm_走楼梯.cpp)
