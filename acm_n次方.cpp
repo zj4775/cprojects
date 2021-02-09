@@ -27,8 +27,8 @@ int main(){
         }else{
             res=m_pow(x,n);
         }
-        printf("%lf\n",res);
-        //cout<<"case #"<<i<<":"<<endl<<res<<endl;
+        //printf("%lf\n",res);
+        cout<<"case #"<<i<<":"<<endl<<res<<endl;
     }
     return 1;
 }
