@@ -10,38 +10,35 @@ using namespace std;
 
 
 
-string get_opsitive_bin(long n){
-    char res[64];
-    memset(res,'0',64);
-    int i=63;
+int get_opsitive_bin(long n){
+    int one_count=0;
+    //memset(res,'1',64);
+    //int i=63;
     while (n!=0){
-        if (n%2==0){
-            res[i--]='0';
-        }else{
-            res[i--]='1';
+        if (n%2==1){
+            one_count++;
         }
         n/=2;
     }
-    return string(res);
+    return one_count;
 }
 
-string get_negative_bin(long n){
-    char res[64];
-    memset(res,'1',64);
-    int i=63;
+int get_negative_bin(long n){
+    //char res[64];
+    int one_count=64;
+    //memset(res,'1',64);
+    //int i=63;
     n=-n-1;
     while (n!=0){
-        if (n%2==0){
-            res[i--]='1';
-        }else{
-            res[i--]='0';
+        if (n%2==1){
+            one_count--;
         }
         n/=2;
     }
-    return string(res);
+    return one_count;
 }
 
-string getbin(long n){
+int getbin(long n){
     if (n>=0){
         return get_opsitive_bin(n);
     }else{
@@ -60,12 +57,8 @@ int count_one(string s1){
 }
 
 bool cmp(long a,long b){
-    long aa=a;
-    long bb=b;
-    string str_aa=getbin(aa);
-    string str_bb=getbin(bb);
-    int count_aa=count_one(str_aa);
-    int count_bb=count_one(str_bb);
+    int count_aa=getbin(a);
+    int count_bb=getbin(b);
     if (count_aa==count_bb){
         return a>b?false:true;
     }
@@ -146,7 +139,8 @@ int main(){
     for (int i = 0; i <count ; i++) {
         cin>>array[i];
     }
-    heap_sort(array,0,count);
+    //quick_sort(array,0,count);
+    //merge_sort(array,0,count-1);
     //sort(array,array+count,cmp);
     for (int i = 0; i <count ; i++) {
         cout<<array[i]<<" ";
