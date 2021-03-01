@@ -21,7 +21,7 @@ void convert(int* array,int s,int e){
 }
 
 void print_array(int* array,int n){
-    cout<<endl<<"¿ªÊ¼´òÓ¡Êı×é:"<<endl;
+    cout<<endl<<"å¼€å§‹æ‰“å°æ•°ç»„:"<<endl;
     for (int i = 0; i <n ; ++i) {
         cout<<array[i];
         if (i!=n-1){
@@ -30,11 +30,11 @@ void print_array(int* array,int n){
             cout<<endl;
         }
     }
-    cout<<"´òÓ¡Êı×é½áÊø"<<endl;
+    cout<<"æ‰“å°æ•°ç»„ç»“æŸ"<<endl;
 }
 
 void quick_sort(int * array,int s,int e){
-    cout<<"¿ìËÙÅÅĞò"<<endl;
+    cout<<"å¿«é€Ÿæ’åº"<<endl;
     int value=array[s];
     int i=s;
     int j=e;
@@ -64,7 +64,7 @@ void quick_sort(int * array,int s,int e){
 }
 
 int quick_sort_k(int * array,int s,int e,int k){
-    //cout<<"»ñÈ¡µÚ¼¸´óµÄÊı×Ö"<<endl;
+    //cout<<"è·å–ç¬¬å‡ å¤§çš„æ•°å­—"<<endl;
     int value=array[s];
     int i=s;
     int j=e;
@@ -90,12 +90,12 @@ int quick_sort_k(int * array,int s,int e,int k){
     }else if ((i-s)>k){
         return quick_sort_k(array,s,i-1,k);
     }else{
-        return quick_sort_k(array,i+1,e,k-(i-s+1));//ÕâÀïĞèÒªÈ¥µôi±¾Éí×Ô¼ºµÄÎ»ÖÃ
+        return quick_sort_k(array,i+1,e,k-(i-s+1));//è¿™é‡Œéœ€è¦å»æ‰iæœ¬èº«è‡ªå·±çš„ä½ç½®
     }
 }
 
 void select_sort(int * array,int s,int e){
-    cout<<"Ñ¡ÔñÅÅĞò"<<endl;
+    cout<<"é€‰æ‹©æ’åº"<<endl;
     int min=0;
     int k=0;
     for (int i = 0; i < e; ++i) {
@@ -114,9 +114,9 @@ void select_sort(int * array,int s,int e){
 }
 
 void bubble_sort(int * array,int s,int e){
-    cout<<"Ã°ÅİÅÅĞò"<<endl;
+    cout<<"å†’æ³¡æ’åº"<<endl;
     for (int i = e; i >s ; --i) {
-        for (int j = s; j <i -1; ++j) {//ÕâÀïµÄj²»ÓÃÈ¡µ½×îºóÒ»¸ö£¬¶øÊÇ×îºóµÚ¶ş¸ö
+        for (int j = s; j <i -1; ++j) {//è¿™é‡Œçš„jä¸ç”¨å–åˆ°æœ€åä¸€ä¸ªï¼Œè€Œæ˜¯æœ€åç¬¬äºŒä¸ª
             if (array[j]>array[j+1]){
                 convert(array,j,j+1);
             }
@@ -125,7 +125,7 @@ void bubble_sort(int * array,int s,int e){
 }
 
 void bi_bubble_sort(int * array,int s,int e){
-    cout<<"Ë«ÏòÃ°ÅİÅÅĞò"<<endl;
+    cout<<"åŒå‘å†’æ³¡æ’åº"<<endl;
     int start=s;
     int end=e;
     while (start<end){
@@ -145,7 +145,7 @@ void bi_bubble_sort(int * array,int s,int e){
 }
 
 void insert_sort(int * array,int s,int e){
-    cout<<"²åÈëÅÅĞò"<<endl;
+    cout<<"æ’å…¥æ’åº"<<endl;
     int j=0;
     int value=0;
     for (int i = s+1; i <e ; ++i) {
@@ -162,7 +162,7 @@ void insert_sort(int * array,int s,int e){
 }
 
 void shell_sort(int * array,int s,int e){
-    cout<<"Ï£¶ûÅÅĞò"<<endl;
+    cout<<"å¸Œå°”æ’åº"<<endl;
     int d=(s+e)/2;
     int j=0;
     int value=0;
@@ -182,7 +182,7 @@ void shell_sort(int * array,int s,int e){
     }
 }
 
-void merge(int * array,int s,int m,int e){//¸Ğ¾õÓĞÊ±½áÎ²»¹ÊÇÓÃµÈºÅºÃËãÒ»µã
+void merge(int * array,int s,int m,int e){//æ„Ÿè§‰æœ‰æ—¶ç»“å°¾è¿˜æ˜¯ç”¨ç­‰å·å¥½ç®—ä¸€ç‚¹
     int* newarray=(int*)malloc(sizeof(int)*(e-s+1));
     int i=s;
     int j=m+1;
@@ -233,7 +233,7 @@ int get_num_by_pos(int n,int pos){
 }
 
 void radix_sort(int * array,int s,int e){
-    cout<<"»ùÊıÅÅĞò"<<endl;
+    cout<<"åŸºæ•°æ’åº"<<endl;
     int tmp[10][30];
     int count[10]={0};
     int maxlen=0;
@@ -269,7 +269,7 @@ void adjust_heap(int * array,int s,int e){
         if (j<e-1&&array[j+1]>array[j]){
             j++;
         }
-        if (tmp<array[j]){//Ö±½ÓÊÇ¸ú×îºóÒ»¸ö×î´óÔªËØ½»»»¼´¿É£¬ÖĞ¼äµÄ²»ÓÃ¹Ü
+        if (tmp<array[j]){//ç›´æ¥æ˜¯è·Ÿæœ€åä¸€ä¸ªæœ€å¤§å…ƒç´ äº¤æ¢å³å¯ï¼Œä¸­é—´çš„ä¸ç”¨ç®¡
             array[i]=array[j];
             i=j;
             j=2*j+1;
@@ -282,7 +282,7 @@ void adjust_heap(int * array,int s,int e){
 
 
 void heap_sort(int * array,int s,int e){
-    cout<<"¶ÑÅÅĞò"<<endl;
+    cout<<"å †æ’åº"<<endl;
     int m=(s+e)/2-1;
     for (int i = m; i >=0 ; --i) {
         adjust_heap(array,i,e);
@@ -297,19 +297,19 @@ void heap_sort(int * array,int s,int e){
 
 
 int main(){
-    int orgin[100]={3,6,9,1,2,7,5,0,8,4};
+    int orgin[100]={2,1};
     int* array=orgin;
     int k=7;
-    print_array(array,10);
+    print_array(array,2);
     //quick_sort(array,0,9);
-    //cout<<"µÚ"<<k<<"´óµÄÊı×ÖÊÇ:"<<quick_sort_k(array,0,9,k-1);
+    //cout<<"ç¬¬"<<k<<"å¤§çš„æ•°å­—æ˜¯:"<<quick_sort_k(array,0,9,k-1);
     //select_sort(array,0,10);
     //bi_bubble_sort(array,0,10);
     //insert_sort(array,0,10);
     //shell_sort(array,0,10);
-    //merge_sort(array,0,9);
-    heap_sort(array,0,10);
-    print_array(array,10);
+    merge_sort(array,0,1);
+    //heap_sort(array,0,10);
+    print_array(array,2);
     /*int array2[100]={34,64,9,95,123,27,7297,5,82,433};
     radix_sort(array2,0,10);
     print_array(array2,10);*/
