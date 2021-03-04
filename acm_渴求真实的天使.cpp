@@ -50,15 +50,17 @@ int main(){
     int x;
     int gc;
     vector<int> v;
+
     cin>>n>>k;
     cin>>x;
     for (int j = 2; j <=sqrt(x) ; j++) {
         if (x%j==0){
             v.push_back(j);
+            if (j*j != x){
+                v.push_back(x/j); //约数的另外一头
+            }
         }
-        if (j*j != x){
-            v.push_back(x/j);
-        }
+
     }
     if (v.empty()){
         cout<<0;
