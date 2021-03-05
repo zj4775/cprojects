@@ -6,6 +6,7 @@
 #include <math.h>
 using namespace std;
 
+typedef  long long LL;
 #define N 1000000000
 
 int gcd(int a,int b){
@@ -45,6 +46,10 @@ int muti_gcd(vector<int> v){
 
 
 int main(){
+    /*LL llarray[3];
+    llarray[0]=3;
+    llarray[1]=4;
+    llarray[2]=llarray[0]+llarray[1];*/
     int n;
     int k;
     int x;
