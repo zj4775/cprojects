@@ -12,11 +12,26 @@ int main(){
     int count;
     //cin>>count;
     int x;
-    for (int i = 0; i <100 ; i++) {
+    for (int i = 0; i <10 ; i++) {
         //cin>>x;
-        v.push_back(i);
+        v.push_back(i*i);
     }
+    vector<int>::iterator it2=v.begin();
+    int a=0;
+    while (it2!=v.end()){
+        a++;
+        it2++;
+    }
+    //cout<<a<<endl;
 
+    vector<int>::reverse_iterator it3=v.rbegin();
+    int b=0;
+    while (it3!=v.rend()){
+        b++;
+        cout<<*it3<<endl;;
+        it3++;
+    }
+    cout<<b<<endl;;
 
     cout<<"max_size:"<<v.max_size()<<endl;
     cout<<"capacity:"<<v.capacity()<<endl;
