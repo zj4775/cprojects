@@ -57,38 +57,27 @@ int main(){
     string param2;
     string params;
     int count=0;
-    while(cin>>optchar>>params){
-        while (optchar!="OUT"){
-            int n=params.find(",");
-            if (n!=string::npos){
-                param1=params.substr(0,n);
-                param2=params.substr(n+1);
-            }else{
-                param1=params;
-            }
-            if (!isopt(optchar)){
+    while(cin>>optchar){
+        cin>>params;
+        if(optchar!="OUT"){
+            param1=params.substr(0,2);
+            param2=params.substr(3,params.length());
+            if(optchar=="IN"){
                 setvalue(param1,atoi(param2.data()));
+            }else if (optchar=="MOV"){
+                setvalue(param1,getvalue(param2));
+            }else if(optchar=="ADD"){
+                setvalue(param1,getvalue(param1)+getvalue(param2));
+            }else if(optchar=="SUB"){
+                setvalue(param1,getvalue(param1)-getvalue(param2));
+            }else if(optchar=="MUL"){
+                setvalue(param1,getvalue(param1)*getvalue(param2));
             }else{
-                if (optchar=="MOV"){
-                    setvalue(param2,getvalue(param1));
-                }else if(optchar=="ADD"){
-                    setvalue(param1,getvalue(param1)+getvalue(param2));
-                }else if(optchar=="SUB"){
-                    setvalue(param1,getvalue(param1)-getvalue(param2));
-                }else if(optchar=="MUL"){
-                    setvalue(param1,getvalue(param1)*getvalue(param2));
-                }else{
-                    if (0==getvalue(param2)){
-                        setvalue(param1,0);
-                    }else{
-                        setvalue(param1,getvalue(param1)/getvalue(param2));
-                    }
-                }
+                setvalue(param1,getvalue(param1)/getvalue(param2));
             }
-            cin>>optchar>>params;
+        }else{
+            cout<<getvalue(params)<<endl;
         }
-        cout<<getvalue(params)<<endl;
-        count++;
     }
 
     return 0;
