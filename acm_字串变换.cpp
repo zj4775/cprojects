@@ -1,7 +1,3 @@
-//
-// Created by jie on 2021/3/6.
-//
-
 #include "iostream"
 #include <vector>
 #include <string>
@@ -9,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-int temp[100][10000];
+int temp[100][100000];
 
 struct node{
     string minstr;
@@ -77,10 +73,10 @@ int main(){
         v.push_back(tmp);*/
     }
     int mid;
-    if (minstr.length()%2==0){
-        mid=minstr.length()/2-1;
+    if (count%2==0){
+        mid=count/2-1;
     }else{
-        mid=minstr.length()/2;
+        mid=count/2;
     }
     //int temp[v.size()];
     for (int l = 0; l <minstr.length() ; l++) {
