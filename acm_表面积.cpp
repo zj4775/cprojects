@@ -4,15 +4,17 @@
 
 #include "iostream"
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 typedef struct node{
     long R;
     long H;
+    long S;
 };
 
 bool cmp(node n1,node n2){
-    return (2*n1.R*n1.H-n1.R*n1.R)<(2*n2.R*n2.H-n2.R*n2.R);
+    return n1.S>n2.S;
 }
 
 int main(){
@@ -23,15 +25,28 @@ int main(){
     for (int i = 0; i <n ; i++) {
         node n;
         cin>>n.R>>n.H;
+        n.S=2*n.R*n.H;
         v.push_back(n);
     }
     sort(v.begin(),v.end(),cmp);
     long sum=0;
-    for (int j = 0; j <m ; j++) {
+    int count=0;
+    long maxsum=0;
+    for (int j = 0; j <v.size() ; j++) {
         node n1=v[j];
-        sum+=(2*n1.R*n1.H+n1.R*n1.R);
+        sum=n1.S+n1.R*n1.R;
+        count=1;
+        for (int i = 0; i <v.size()&&count<m ; i++) {
+            node n2=v[i];
+            if (j!=i&&n2.R<=n1.R){
+                sum+=n2.S;
+                count++;
+            }
+        }
+        if (count==m){
+            maxsum=max(maxsum,sum);
+        }
     }
-    sum+=v[m-1].R*v[m-1].R;
-    cout<<sum<<endl;
+    cout<<maxsum<<endl;
     return 0;
 }
