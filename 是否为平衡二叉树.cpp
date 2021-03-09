@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<sys/malloc.h>
 #include<math.h>
+#include <cstdlib>
+
 typedef struct node
 {
 	char ch;

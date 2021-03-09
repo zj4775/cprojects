@@ -1,7 +1,9 @@
 #include<stdio.h>
 #include<sys/malloc.h>
 #include<string.h>
-typedef struct node 
+#include <cstdlib>
+
+typedef struct node
 {
 	char ch;
 	node *lchild;

@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<sys/malloc.h>
+#include <cstdlib>
+
 #define len sizeof(node)
 typedef struct student
 {
